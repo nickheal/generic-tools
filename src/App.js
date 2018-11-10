@@ -1,28 +1,19 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import theme from './theme';
+import Four04 from './pages/404';
+import ApWelcome from './pages/ap/welcome';
+import ApSession from './pages/ap/session';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
-}
-
-export default App;
+export default () => (
+  <ThemeProvider theme={theme}>
+    <div className="app">
+      <Switch>
+        <Route path="/ap" exact component={ApWelcome} />
+        <Route path="/ap/session/:sessionId" exact component={ApSession} />
+        <Route component={Four04} />
+      </Switch>
+    </div>
+  </ThemeProvider>
+);
