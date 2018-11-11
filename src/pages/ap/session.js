@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { FaHourglassHalf, FaUserSecret } from 'react-icons/fa';
 import styled from 'styled-components';
+import users from '../../db/users';
 import sessions from '../../db/ap/sessions';
 import HalfPageColumn from '../../components/halfPageColumn';
+import PointsChoice from '../../components/ap/pointsChoice';
 import { Button, Ul, Li } from '../../elements';
 
 const SMain = styled.main`
@@ -39,6 +42,11 @@ export default function ApSession(props) {
     <SMain>
       <HalfPageColumn secondary>
         <SDivLeft>
+          <PointsChoice
+            options={[1, 2, 3, 5, 8, 13, 20, 40, 100]}
+            points={doc && doc.members[users.id].points}
+            onChange={newPoints => sessions.updatePoints(sessionId, newPoints)}
+          />
           <Ul>
             {doc &&
               doc.members &&
@@ -48,7 +56,12 @@ export default function ApSession(props) {
                 </Li>
               ))}
           </Ul>
-          <Button secondary>Clear points</Button>
+          <Button
+            secondary
+            onClick={() => sessions.updateClearPoints(sessionId)}
+          >
+            Clear points
+          </Button>
         </SDivLeft>
       </HalfPageColumn>
       <HalfPageColumn primary>
@@ -58,7 +71,13 @@ export default function ApSession(props) {
               doc.members &&
               Object.values(doc.members).map((member, index) => (
                 <Li key={index} secondary>
-                  {doc.showPoints ? member.points : member.points ? '—' : ''}
+                  {doc.showPoints ? (
+                    member.points
+                  ) : member.points ? (
+                    <FaUserSecret />
+                  ) : (
+                    <FaHourglassHalf />
+                  )}
                 </Li>
               ))}
           </Ul>

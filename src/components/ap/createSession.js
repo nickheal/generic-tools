@@ -6,15 +6,18 @@ export default function CreateSession(props) {
   const { history } = props;
 
   return (
-    <Form
-      onSubmit={e => {
-        e.preventDefault();
-        sessions
-          .create()
-          .then(session => history.push(`/ap/session/${session.id}`));
-      }}
-    >
-      <Button primary>I want to start a new session</Button>
+    <Form>
+      <Button
+        primary
+        type="button"
+        onClick={() =>
+          sessions
+            .create()
+            .then(session => history.push(`/ap/session/${session.id}`))
+        }
+      >
+        I want to start a new session
+      </Button>
     </Form>
   );
 }

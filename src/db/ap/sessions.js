@@ -38,6 +38,22 @@ export default {
   },
 
   updateClearPoints(sessionId) {
-    return collection.doc(sessionId).update({ members: [] });
+    const docRef = collection.doc(sessionId);
+    return db.runTransaction(transaction => {
+      return transaction.get(docRef).then(doc => {
+        const members = doc.data().members;
+        Object.keys(members).forEach(memberKey => {
+          const member = members[memberKey];
+          member.points = null;
+        });
+        transaction.update(docRef, { members, showPoints: false });
+      });
+    });
+  },
+
+  updatePoints(sessionId, newPoints) {
+    return collection.doc(sessionId).update({
+      [`members.${user.id}.points`]: newPoints
+    });
   }
 };
