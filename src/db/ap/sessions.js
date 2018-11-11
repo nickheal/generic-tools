@@ -28,7 +28,7 @@ export default {
     return collection.doc(sessionId).update({
       [`members.${user.id}`]: {
         name: user.name,
-        points: 5
+        points: null
       }
     });
   },

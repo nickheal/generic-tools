@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaHourglassHalf, FaUserSecret } from 'react-icons/fa';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import users from '../../db/users';
 import sessions from '../../db/ap/sessions';
 import HalfPageColumn from '../../components/halfPageColumn';
@@ -20,6 +20,16 @@ const SDivLeft = styled(SDiv)`
 const SDivRight = styled(SDiv)`
   padding-left: 1em;
   text-align: left;
+`;
+const rotate = keyframes`
+  0% { transform: rotate(0deg); }
+  40% { transform: rotate(180deg); }
+  50% { transform: rotate(180deg); }
+  90% { transform: rotate(360deg); }
+  100% { transform: rotate(360deg); }
+`;
+const SFaHourglassHalf = styled(FaHourglassHalf)`
+  animation: ${rotate} 2s linear infinite;
 `;
 
 export default function ApSession(props) {
@@ -76,7 +86,7 @@ export default function ApSession(props) {
                   ) : member.points ? (
                     <FaUserSecret />
                   ) : (
-                    <FaHourglassHalf />
+                    <SFaHourglassHalf />
                   )}
                 </Li>
               ))}
