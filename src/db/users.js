@@ -25,6 +25,19 @@ class User {
         localStorage.setItem('apUserId', user.id);
       });
   }
+
+  subscribe(userId, callback) {
+    return collection.doc(userId).onSnapshot(doc => callback(doc));
+  }
+
+  updateName(name) {
+    collection
+      .doc(this.id)
+      .update({ name })
+      .then(() => {
+        this.name = name;
+      });
+  }
 }
 
 export default new User();

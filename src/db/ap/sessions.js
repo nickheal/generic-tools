@@ -21,13 +21,31 @@ export default {
   },
 
   subscribe(sessionId, callback) {
-    return collection.doc(sessionId).onSnapshot(doc => callback(doc.data()));
+    let memberUnsubscribes = [];
+    const snapshotUnsubscribe = collection.doc(sessionId).onSnapshot(doc => {
+      memberUnsubscribes.forEach(memberUnsubscribe => memberUnsubscribe());
+      const data = doc.data();
+      const members = doc.data().members;
+      memberUnsubscribes = Object.keys(members).map(memberId =>
+        user.subscribe(memberId, userDoc => {
+          Object.keys(data.members).forEach(memberId => {
+            if (memberId === userDoc.id) {
+              data.members[memberId].name = userDoc.data().name;
+            }
+          });
+          callback(data);
+        })
+      );
+    });
+    return function unsubscribe() {
+      snapshotUnsubscribe();
+      memberUnsubscribes.forEach(memberUnsubscribe => memberUnsubscribe());
+    };
   },
 
   addMember(sessionId) {
     return collection.doc(sessionId).update({
       [`members.${user.id}`]: {
-        name: user.name,
         points: null
       }
     });
