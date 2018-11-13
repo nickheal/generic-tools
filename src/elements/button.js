@@ -4,16 +4,34 @@ import { FaSpinner } from 'react-icons/fa';
 
 const SButton = styled.button`
   background-color: ${props =>
-    props.primary ? props.theme.primary : props.theme.white};
+    props.primary
+      ? props.theme.primary
+      : props.secondary
+      ? props.theme.white
+      : 'transparent'};
   border: solid 1px
-    ${props => (props.primary ? props.theme.white : props.theme.primary)};
+    ${props =>
+      props.primary
+        ? props.theme.white
+        : props.secondary
+        ? props.theme.primary
+        : 'transparent'};
   border-radius: 999em;
   color: ${props => (props.primary ? props.theme.white : props.theme.primary)};
   cursor: pointer;
   font-family: ${props => props.theme.fontFamily};
   font-size: ${props => props.theme.fontSize}rem;
-  padding: 0.6em 1.2em;
+  padding: ${props => (props.tertiary ? '0' : '0.6em 1.2em')};
   position: relative;
+
+  :hover {
+    background-color: ${props =>
+      props.primary
+        ? props.theme.primaryDark
+        : props.secondary
+        ? props.theme.light
+        : 'transparent'};
+  }
 `;
 const ButtonOverlay = styled.div`
   background: rgba(

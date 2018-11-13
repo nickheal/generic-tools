@@ -7,5 +7,6 @@ export default styled.input`
   color: ${props => props.theme.primary};
   font-family: ${props => props.theme.fontFamily};
   font-size: ${props => props.theme.fontSize}rem;
+  margin-right: 1em;
   padding: 0.6em 1em;
 `;
