@@ -21,8 +21,17 @@ export default function DataTable(props) {
           </Button>
           {popupOpen === id && (
             <Popup onClose={() => setPopupOpen(false)}>
-              <SButton>Edit</SButton>
-              <SButton>Delete</SButton>
+              {column.actions.map((action, index) => (
+                <SButton
+                  key={index}
+                  onClick={() => {
+                    action.action(row);
+                    setPopupOpen(false);
+                  }}
+                >
+                  {action.title}
+                </SButton>
+              ))}
             </Popup>
           )}
         </React.Fragment>

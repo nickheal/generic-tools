@@ -8,17 +8,21 @@ db.settings({
 const collection = db.collection('topics');
 
 export default {
-//   create() {
-//     return collection
-//       .add({
-//         members: {},
-//         showPoints: false
-//       })
-//       .then(session => {
-//         this.addMember(session.id);
-//         return session;
-//       });
-//   },
+  //   create() {
+  //     return collection
+  //       .add({
+  //         members: {},
+  //         showPoints: false
+  //       })
+  //       .then(session => {
+  //         this.addMember(session.id);
+  //         return session;
+  //       });
+  //   },
+
+  delete(topicId) {
+    collection.doc(topicId).delete();
+  },
 
   subscribe(callback) {
     return collection.onSnapshot(callback);

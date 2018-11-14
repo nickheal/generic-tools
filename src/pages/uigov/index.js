@@ -7,14 +7,19 @@ import UpdateTopic from '../../components/uigov/updateTopic';
 import DataTable from '../../components/dataTable';
 import { H1, Header } from '../../elements';
 
-export default function Home() {
+export default function Home(props) {
   const [topics, setTopics] = useState([]);
 
-  useEffect(() => {
-    return dbTopics.subscribe(querySnapshot => {
-      setTopics(querySnapshot.map(doc => doc.data()));
-    });
-  });
+  useEffect(
+    () => {
+      return dbTopics.subscribe(querySnapshot => {
+        setTopics(
+          querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+        );
+      });
+    },
+    [props.match]
+  );
 
   return (
     <React.Fragment>
@@ -41,7 +46,7 @@ export default function Home() {
               },
               {
                 title: 'Creation date',
-                field: 'creationDate',
+                field: 'date',
                 format: value => format.date(value)
               },
               {
@@ -53,7 +58,7 @@ export default function Home() {
                   },
                   {
                     title: 'Delete',
-                    action: () => console.log('Delete')
+                    action: row => dbTopics.delete(row.id)
                   }
                 ]
               }
