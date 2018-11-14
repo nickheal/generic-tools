@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import dbTopics from '../../db/uigov/topics';
 import format from '../../utils/format';
 import EditUser from '../../components/editUser';
 import UpdateTopic from '../../components/uigov/updateTopic';
@@ -7,6 +8,14 @@ import DataTable from '../../components/dataTable';
 import { H1, Header } from '../../elements';
 
 export default function Home() {
+  const [topics, setTopics] = useState([]);
+
+  useEffect(() => {
+    return dbTopics.subscribe(querySnapshot => {
+      setTopics(querySnapshot.map(doc => doc.data()));
+    });
+  });
+
   return (
     <React.Fragment>
       <Header>
@@ -49,18 +58,7 @@ export default function Home() {
                 ]
               }
             ]}
-            data={[
-              {
-                subject: 'A thing',
-                raisedBy: 'Nick',
-                creationDate: 1542057287465
-              },
-              {
-                subject: 'A second thing',
-                raisedBy: 'Also Nick',
-                creationDate: 1542057285465
-              }
-            ]}
+            data={topics}
           />
         </Wrapper>
       </SMain>
