@@ -72,5 +72,11 @@ export default function DataTable(props) {
 }
 
 const SButton = styled(Button)`
+  border-radius: 0;
   display: block;
+  width: 100%;
+
+  :hover {
+    background-color: ${props => props.theme.light};
+  }
 `;
