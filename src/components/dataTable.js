@@ -74,6 +74,7 @@ export default function DataTable(props) {
 const SButton = styled(Button)`
   border-radius: 0;
   display: block;
+  text-align: left;
   width: 100%;
 
   :hover {

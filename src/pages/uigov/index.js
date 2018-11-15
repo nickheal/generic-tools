@@ -9,6 +9,7 @@ import { H1, Header } from '../../elements';
 
 export default function Home(props) {
   const [topics, setTopics] = useState([]);
+  const [topicInEdit, setTopicInEdit] = useState();
 
   useEffect(
     () => {
@@ -31,7 +32,7 @@ export default function Home(props) {
           <EditUser />
         </Wrapper>
         <Wrapper>
-          <UpdateTopic />
+          <UpdateTopic edit={topicInEdit} />
         </Wrapper>
         <Wrapper>
           <DataTable
@@ -54,7 +55,7 @@ export default function Home(props) {
                 actions: [
                   {
                     title: 'Edit',
-                    action: () => console.log('Edit')
+                    action: row => setTopicInEdit(row)
                   },
                   {
                     title: 'Delete',
