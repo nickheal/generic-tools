@@ -8,9 +8,9 @@
     "react-scripts": "2.1.1",
     "react-router-dom": "^4.3.1",
     "react-icons": "^3.2.2",
-    "styled-components": "^4.0.3",
-    "firebase": "^5.5.7",
-    "firebase-tools": "^6.0.1"
+    "styled-components": "^4.1.1",
+    "firebase": "^5.5.8",
+    "firebase-tools": "^6.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
