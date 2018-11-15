@@ -6,6 +6,9 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+/**
+ * This needs to be changed at some point to render without waiting for the user
+ */
 Promise.resolve(user.create()).then(() => {
   ReactDOM.render(
     <BrowserRouter>
