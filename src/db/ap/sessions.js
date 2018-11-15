@@ -25,7 +25,7 @@ export default {
     const snapshotUnsubscribe = collection.doc(sessionId).onSnapshot(doc => {
       memberUnsubscribes.forEach(memberUnsubscribe => memberUnsubscribe());
       const data = doc.data();
-      const members = doc.data().members;
+      const members = data.members;
       memberUnsubscribes = Object.keys(members).map(memberId =>
         user.subscribe(memberId, userDoc => {
           Object.keys(data.members).forEach(memberId => {
