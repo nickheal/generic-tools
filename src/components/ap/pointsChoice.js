@@ -42,17 +42,10 @@ const SInput = styled.input`
       color: ${props => props.theme.white};
       position: relative;
 
-      &::before {
-        transform: translateX(0px);
-      }
-
-      &::after {
-        transform: translateX(0px);
-      }
-
       &::before,
       &::after {
         opacity: 0.5;
+        transform: translateX(0) scaleY(0.8);
       }
     }
   }

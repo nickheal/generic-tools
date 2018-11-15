@@ -12,7 +12,7 @@ export default function DataTable(props) {
   function renderCell(id, row, column) {
     if (column.actions) {
       return (
-        <React.Fragment>
+        <>
           <Button
             tertiary
             onClick={() => setPopupOpen(popupOpen === id ? false : id)}
@@ -34,7 +34,7 @@ export default function DataTable(props) {
               ))}
             </Popup>
           )}
-        </React.Fragment>
+        </>
       );
     }
 

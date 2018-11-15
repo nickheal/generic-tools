@@ -23,7 +23,7 @@ export default function Home(props) {
   );
 
   return (
-    <React.Fragment>
+    <>
       <Header>
         <H1 light>UI governance subjects</H1>
       </Header>
@@ -68,7 +68,7 @@ export default function Home(props) {
           />
         </Wrapper>
       </SMain>
-    </React.Fragment>
+    </>
   );
 }
 
