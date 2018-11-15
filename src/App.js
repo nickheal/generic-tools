@@ -6,6 +6,7 @@ import Four04 from './pages/404';
 import ApWelcome from './pages/ap/welcome';
 import ApSession from './pages/ap/session';
 import UigovHome from './pages/uigov/index';
+import Dashboard from './pages/dashboard';
 
 export default () => (
   <ThemeProvider theme={theme}>
@@ -14,6 +15,7 @@ export default () => (
         <Route path="/ap" exact component={ApWelcome} />
         <Route path="/ap/session/:sessionId" exact component={ApSession} />
         <Route path="/uigov" exact component={UigovHome} />
+        <Route path="/" exact component={Dashboard} />
         <Route component={Four04} />
       </Switch>
     </div>
