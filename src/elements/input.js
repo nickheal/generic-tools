@@ -9,4 +9,5 @@ export default styled.input`
   font-size: ${props => props.theme.fontSize}rem;
   margin-right: 1em;
   padding: 0.6em 1em;
+  min-width: 320px;
 `;

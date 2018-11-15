@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import dbTopics from '../../db/uigov/topics';
 import { Button, Form, Input, Label } from '../../elements';
 
 export default function UpdateTopic() {
@@ -7,8 +8,10 @@ export default function UpdateTopic() {
   return (
     <Form>
       <Label>The topic I'd like to discuss is</Label>
-      <Input type="text" onChange={e => setTopic(e.target.value)} />
-      <Button primary>Add topic</Button>
+      <Input type="text" onChange={e => setTopic(e.target.value)} required />
+      <Button primary onClick={() => dbTopics.create(topic)}>
+        Add topic
+      </Button>
     </Form>
   );
 }
