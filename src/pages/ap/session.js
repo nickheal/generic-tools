@@ -6,7 +6,7 @@ import sessions from '../../db/ap/sessions';
 import HalfPageColumn from '../../components/halfPageColumn';
 import EditUser from '../../components/editUser';
 import PointsChoice from '../../components/ap/pointsChoice';
-import { Button, Ul, Li } from '../../elements';
+import { Button, P, Ul, Li } from '../../elements';
 
 export default function ApSession(props) {
   const {
@@ -68,17 +68,21 @@ export default function ApSession(props) {
               <Li key={index} primary>
                 <Wrapper noPadding>
                   <HalfPageColumn foreground>
-                    <SDivLeft>{member.name}</SDivLeft>
+                    <SDivLeft>
+                      <P>{member.name}</P>
+                    </SDivLeft>
                   </HalfPageColumn>
                   <HalfPageColumn foreground>
                     <SDivRight>
-                      {doc.showPoints ? (
-                        member.points || '—'
-                      ) : member.points ? (
-                        <FaUserSecret />
-                      ) : (
-                        <SFaHourglassHalf />
-                      )}
+                      <P>
+                        {doc.showPoints ? (
+                          member.points || '—'
+                        ) : member.points ? (
+                          <FaUserSecret />
+                        ) : (
+                          <SFaHourglassHalf />
+                        )}
+                      </P>
                     </SDivRight>
                   </HalfPageColumn>
                 </Wrapper>

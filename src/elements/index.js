@@ -7,6 +7,7 @@ import Input from './input';
 import Label from './label';
 import Li from './li';
 import Link from './link';
+import P from './p';
 import Table from './table';
 import Tbody from './tbody';
 import Td from './td';
@@ -25,6 +26,7 @@ export {
   Label,
   Li,
   Link,
+  P,
   Table,
   Tbody,
   Td,
