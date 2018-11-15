@@ -59,6 +59,7 @@ const SLabel = styled.label`
   color: ${props => props.theme.white};
   cursor: pointer;
   display: inline-block;
+  font-size: ${props => props.fontSize * 1.5}rem;
   margin-bottom: 0.5em;
   padding: 0.5em 0.5em 0.25em;
   transition: transform 200ms;

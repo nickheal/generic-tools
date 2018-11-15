@@ -7,13 +7,12 @@ db.settings({
 const collection = db.collection('users');
 
 class User {
-  name = 'Anon';
+  id = localStorage.getItem('userId');
+  name = localStorage.getItem('userName') || 'Unknown';
 
   create() {
-    const localUserId = localStorage.getItem('apUserId');
-    if (localUserId) {
-      this.id = localUserId;
-      return localUserId;
+    if (this.id) {
+      return this.id;
     }
 
     return collection
@@ -22,7 +21,7 @@ class User {
       })
       .then(user => {
         this.id = user.id;
-        localStorage.setItem('apUserId', user.id);
+        localStorage.setItem('userId', user.id);
       });
   }
 
@@ -36,6 +35,7 @@ class User {
       .update({ name })
       .then(() => {
         this.name = name;
+        localStorage.setItem('userName', name);
       });
   }
 }
