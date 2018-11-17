@@ -20,6 +20,7 @@ export default function ApSession(props) {
   useEffect(
     () => {
       sessions.addMember(sessionId);
+      return () => sessions.removeMember(sessionId);
     },
     [sessionId]
   );

@@ -51,6 +51,12 @@ export default {
     });
   },
 
+  removeMember(sessionId) {
+    return collection.doc(sessionId).update({
+      [`members.${user.id}`]: firebase.firestore.FieldValue.delete()
+    });
+  },
+
   updateShowPoints(sessionId, newValue) {
     return collection.doc(sessionId).update({ showPoints: newValue });
   },

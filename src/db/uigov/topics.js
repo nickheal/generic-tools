@@ -16,8 +16,12 @@ export default {
     });
   },
 
+  update(topicId, subject) {
+    return collection.doc(topicId).update({ subject });
+  },
+
   delete(topicId) {
-    collection.doc(topicId).delete();
+    return collection.doc(topicId).delete();
   },
 
   subscribe(callback) {
