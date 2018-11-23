@@ -12,7 +12,8 @@ export default {
     return collection
       .add({
         members: {},
-        showPoints: false
+        showPoints: false,
+        timestamp: Date.now()
       })
       .then(session => {
         this.addMember(session.id);
